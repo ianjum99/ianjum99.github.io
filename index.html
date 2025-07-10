@@ -1,0 +1,1071 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ibrahim Anjum - Systems Engineer</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a0a0a;
+            color: #ffffff;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: grid;
+            grid-template-columns: repeat(20, 1fr);
+            grid-template-rows: repeat(20, 1fr);
+            gap: 1px;
+            opacity: 0.1;
+        }
+
+        .grid-item {
+            background: #333;
+            border-radius: 1px;
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 10;
+            position: relative;
+        }
+
+        .hero-title {
+            font-size: clamp(3rem, 8vw, 8rem);
+            font-weight: 900;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 3s ease-in-out infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            margin-bottom: 2rem;
+            color: #888;
+            font-weight: 300;
+        }
+
+        .hero-description {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            color: #bbb;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 16px 40px;
+            background: #ff6b6b;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        /* Floating Elements */
+        .floating-shapes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .floating-dot {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: #ff6b6b;
+            border-radius: 50%;
+            opacity: 0.6;
+        }
+
+        .floating-square {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: #4ecdc4;
+            border-radius: 2px;
+            opacity: 0.4;
+        }
+
+        .floating-triangle {
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-left: 6px solid transparent;
+            border-right: 6px solid transparent;
+            border-bottom: 10px solid #45b7d1;
+            opacity: 0.5;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 0;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            border-bottom: 1px solid #333;
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #ff6b6b;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #ff6b6b;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: #ff6b6b;
+        }
+
+        /* Sections */
+        section {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 5vw, 4rem);
+            text-align: center;
+            margin-bottom: 4rem;
+            color: #fff;
+            font-weight: 700;
+        }
+
+        /* About Section */
+        .about {
+            background: #111;
+            border-top: 1px solid #333;
+            border-bottom: 1px solid #333;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text {
+            font-size: 1.2rem;
+            color: #bbb;
+            line-height: 1.8;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(255, 107, 107, 0.1);
+            border: 1px solid #333;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .stat-item:hover {
+            background: rgba(255, 107, 107, 0.2);
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 900;
+            color: #ff6b6b;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: #888;
+            font-size: 1rem;
+        }
+
+        /* Skills Section */
+        .skills {
+            background: #0a0a0a;
+        }
+
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category {
+            background: #111;
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid #333;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-category::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, #ff6b6b, #4ecdc4, #45b7d1);
+        }
+
+        .skill-category h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: #fff;
+        }
+
+        .skill-item {
+            margin-bottom: 1.5rem;
+        }
+
+        .skill-name {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .skill-level {
+            color: #ff6b6b;
+            font-size: 0.9rem;
+        }
+
+        .skill-bar {
+            height: 6px;
+            background: #333;
+            border-radius: 3px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .skill-progress {
+            height: 100%;
+            background: linear-gradient(90deg, #ff6b6b, #4ecdc4);
+            border-radius: 3px;
+            width: 0%;
+            transition: width 2s ease;
+        }
+
+        /* Experience Section */
+        .experience {
+            background: #111;
+            border-top: 1px solid #333;
+            border-bottom: 1px solid #333;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, #ff6b6b, #4ecdc4, #45b7d1);
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 4rem;
+            width: 45%;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 55%;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            background: #ff6b6b;
+            border-radius: 50%;
+            border: 3px solid #0a0a0a;
+            top: 0;
+        }
+
+        .timeline-item:nth-child(odd)::before {
+            right: -32px;
+        }
+
+        .timeline-item:nth-child(even)::before {
+            left: -32px;
+        }
+
+        .job-card {
+            background: #0a0a0a;
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid #333;
+            position: relative;
+        }
+
+        .job-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 0.5rem;
+        }
+
+        .company-period {
+            color: #ff6b6b;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .job-description {
+            color: #bbb;
+            margin-bottom: 1rem;
+        }
+
+        .achievements {
+            list-style: none;
+        }
+
+        .achievements li {
+            padding: 0.5rem 0;
+            color: #ccc;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .achievements li::before {
+            content: '▶';
+            position: absolute;
+            left: 0;
+            color: #4ecdc4;
+            font-size: 0.8rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: #0a0a0a;
+            text-align: center;
+        }
+
+        .contact-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .contact-item {
+            background: #111;
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid #333;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            background: rgba(255, 107, 107, 0.1);
+            transform: translateY(-5px);
+        }
+
+        .contact-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-label {
+            color: #888;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-value {
+            color: #fff;
+            font-weight: 600;
+        }
+
+        /* Animation Classes */
+        .animate-in {
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        .animate-in.active {
+            opacity: 1;
+            transform: translateY(0);
+            transition: all 0.8s ease;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-item {
+                width: calc(100% - 60px);
+                left: 60px !important;
+            }
+
+            .timeline-item::before {
+                left: -32px !important;
+            }
+        }
+
+        /* Particle Animation */
+        .particle {
+            position: absolute;
+            pointer-events: none;
+            border-radius: 50%;
+        }
+
+        .particle-1 {
+            width: 4px;
+            height: 4px;
+            background: #ff6b6b;
+        }
+
+        .particle-2 {
+            width: 6px;
+            height: 6px;
+            background: #4ecdc4;
+        }
+
+        .particle-3 {
+            width: 3px;
+            height: 3px;
+            background: #45b7d1;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="nav-content">
+                <div class="logo">Ibrahim Anjum</div>
+                <ul class="nav-links">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-grid"></div>
+        <div class="floating-shapes"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">Ibrahim Anjum</h1>
+            <p class="hero-subtitle">Systems Engineer & MLOps Expert</p>
+            <p class="hero-description">8+ years of experience building scalable ML infrastructure and end-to-end systems in financial, gambling, and investment banking industries</p>
+            <a href="#contact" class="cta-button">Get In Touch</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title animate-in">About Me</h2>
+            <div class="about-content">
+                <div class="about-text animate-in">
+                    <p>I'm a passionate Systems Engineer with 8+ years of experience specializing in MLOps, DevOps, and cloud architecture. Currently working as an MLOps Engineer at InstaDeep, I focus on building scalable machine learning infrastructure and optimizing deployment workflows.</p>
+                    <p>My expertise spans across Python, AWS, Kubernetes, and modern DevOps practices. I've successfully led teams, designed cloud architectures, and implemented compliance-focused solutions in highly regulated environments including financial services and gambling platforms.</p>
+                    <p>I hold a First Class BSc in Computer Science (AI) from the University of Greenwich and have worked with cutting-edge technologies like Flyte, MLflow, Kubernetes, and blockchain solutions.</p>
+                </div>
+                <div class="stats-grid animate-in">
+                    <div class="stat-item">
+                        <div class="stat-number" data-target="8">0</div>
+                        <div class="stat-label">Years Experience</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" data-target="50">0</div>
+                        <div class="stat-label">Projects Completed</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" data-target="15">0</div>
+                        <div class="stat-label">Technologies</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" data-target="6">0</div>
+                        <div class="stat-label">Companies</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
+        <div class="container">
+            <h2 class="section-title animate-in">Technical Expertise</h2>
+            <div class="skills-container">
+                <div class="skill-category animate-in">
+                    <h3>Programming Languages</h3>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Python</span>
+                            <span class="skill-level">Advanced</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="95"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>JavaScript</span>
+                            <span class="skill-level">Intermediate</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="75"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Solidity</span>
+                            <span class="skill-level">Intermediate</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="70"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>GO</span>
+                            <span class="skill-level">Intermediate</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="65"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-category animate-in">
+                    <h3>Cloud & DevOps</h3>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>AWS</span>
+                            <span class="skill-level">Advanced</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="90"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Kubernetes</span>
+                            <span class="skill-level">Advanced</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="85"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Docker</span>
+                            <span class="skill-level">Advanced</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="90"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Linux/Bash</span>
+                            <span class="skill-level">Advanced</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="88"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-category animate-in">
+                    <h3>MLOps & Infrastructure</h3>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>MLflow</span>
+                            <span class="skill-level">Advanced</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="85"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Kubeflow</span>
+                            <span class="skill-level">Advanced</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="80"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Flyte</span>
+                            <span class="skill-level">Advanced</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="85"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Terraform</span>
+                            <span class="skill-level">Advanced</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="80"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="experience">
+        <div class="container">
+            <h2 class="section-title animate-in">Professional Journey</h2>
+            <div class="timeline">
+                <div class="timeline-item animate-in">
+                    <div class="job-card">
+                        <div class="job-title">MLOps Engineer</div>
+                        <div class="company-period">InstaDeep, London • Jan 2025 - Present</div>
+                        <div class="job-description">
+                            Leading the design, implementation, and optimization of scalable machine learning infrastructure to support research and production deployments across multiple business units.
+                        </div>
+                        <ul class="achievements">
+                            <li>Deployed Flyte and MLflow on Kubernetes, cutting pipeline execution time by 35%</li>
+                            <li>Reduced training costs by 25% and time-to-convergence by 40%</li>
+                            <li>Designed centralized model registry and monitoring solution</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item animate-in">
+                    <div class="job-card">
+                        <div class="job-title">Lead Solutions Architect/DevOps Engineer</div>
+                        <div class="company-period">TXODDS, London • Jan 2024 - Nov 2024</div>
+                        <div class="job-description">
+                            Led strategic direction and architectural design, ensuring compliance with regulatory standards such as ISO 27001 in highly regulated gambling environment.
+                        </div>
+                        <ul class="achievements">
+                            <li>Achieved 40% increase in deployment frequency and 60% reduction in manual intervention</li>
+                            <li>Reduced operational costs by 20% and improved system reliability by 25%</li>
+                            <li>Spearheaded adoption of ArgoCD and GitHub Actions</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item animate-in">
+                    <div class="job-card">
+                        <div class="job-title">Senior DevOps Engineer/Solutions Architect</div>
+                        <div class="company-period">Kwiff, London • May 2023 - Nov 2023</div>
+                        <div class="job-description">
+                            Designed and maintained CI/CD pipelines with focus on secure, regulated environments, automating build, test, and deployment processes.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item animate-in">
+                    <div class="job-card">
+                        <div class="job-title">DevOps Team Lead & Senior Quantitative Developer</div>
+                        <div class="company-period">Hamilton Capital Holding, London • Aug 2020 - Apr 2023</div>
+                        <div class="job-description">
+                            Built secure deployment tools for cryptocurrency and stablecoin projects, developed advanced quantitative models for trading and risk management.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item animate-in">
+                    <div class="job-card">
+                        <div class="job-title">Senior ML Operations Engineer</div>
+                        <div class="company-period">Royal Museums Greenwich, London • Jan 2019 - Aug 2020</div>
+                        <div class="job-description">
+                            Developed and maintained ML pipelines for data ingestion, training, and model deployment while ensuring compliance with data protection regulations.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item animate-in">
+                    <div class="job-card">
+                        <div class="job-title">Solutions Architect & Cloud Developer</div>
+                        <div class="company-period">Infinity CCS, London • Mar 2017 - Jan 2019</div>
+                        <div class="job-description">
+                            Led technical architecture reviews, designed scalable cloud infrastructures, and implemented CI/CD pipelines ensuring secure application deployment.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="contact-content">
+                <h2 class="section-title animate-in">Let's Connect</h2>
+                <p class="animate-in">Ready to discuss your next project or explore opportunities? I'd love to hear from you!</p>
+                <div class="contact-info">
+                    <div class="contact-item animate-in">
+                        <div class="contact-icon">📧</div>
+                        <div class="contact-label">Email</div>
+                        <div class="contact-value">ibrahimanjum15@gmail.com</div>
+                    </div>
+                    <div class="contact-item animate-in">
+                        <div class="contact-icon">📍</div>
+                        <div class="contact-label">Location</div>
+                        <div class="contact-value">London, UK</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Create grid pattern
+        function createGrid() {
+            const grid = document.querySelector('.hero-grid');
+            for (let i = 0; i < 400; i++) {
+                const item = document.createElement('div');
+                item.className = 'grid-item';
+                grid.appendChild(item);
+            }
+        }
+
+        // Create floating shapes
+        function createFloatingShapes() {
+            const container = document.querySelector('.floating-shapes');
+            const shapes = ['floating-dot', 'floating-square', 'floating-triangle'];
+            
+            for (let i = 0; i < 20; i++) {
+                const shape = document.createElement('div');
+                shape.className = shapes[Math.floor(Math.random() * shapes.length)];
+                shape.style.left = Math.random() * 100 + '%';
+                shape.style.top = Math.random() * 100 + '%';
+                container.appendChild(shape);
+            }
+        }
+
+        // Initialize animations
+        function initAnimations() {
+            // Grid animation
+            anime({
+                targets: '.grid-item',
+                scale: [0, 1],
+                duration: 1000,
+                delay: anime.stagger(5, {grid: [20, 20], from: 'center'}),
+                easing: 'easeOutQuad'
+            });
+
+            // Floating shapes animation
+            anime({
+                targets: '.floating-dot, .floating-square, .floating-triangle',
+                translateY: function() {
+                    return anime.random(-20, 20);
+                },
+                translateX: function() {
+                    return anime.random(-20, 20);
+                },
+                rotate: function() {
+                    return anime.random(-180, 180);
+                },
+                scale: function() {
+                    return anime.random(0.5, 1.5);
+                },
+                duration: function() {
+                    return anime.random(3000, 6000);
+                },
+                loop: true,
+                direction: 'alternate',
+                easing: 'easeInOutSine',
+                delay: anime.stagger(200)
+            });
+
+            // Hero content animation
+            anime.timeline({
+                easing: 'easeOutExpo',
+                duration: 1000
+            })
+            .add({
+                targets: '.hero-title',
+                opacity: [0, 1],
+                scale: [0.8, 1],
+                delay: 800
+            })
+            .add({
+                targets: '.hero-subtitle',
+                opacity: [0, 1],
+                translateY: [30, 0],
+                delay: 200
+            })
+            .add({
+                targets: '.hero-description',
+                opacity: [0, 1],
+                translateY: [30, 0],
+                delay: 200
+            })
+            .add({
+                targets: '.cta-button',
+                opacity: [0, 1],
+                translateY: [30, 0],
+                delay: 200
+            });
+        }
+
+        // Scroll animations
+        function setupScrollAnimations() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        
+                        // Animate stats
+                        if (entry.target.classList.contains('about')) {
+                            animateStats();
+                        }
+                        
+                        // Animate skill bars
+                        if (entry.target.classList.contains('skills')) {
+                            animateSkillBars();
+                        }
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.animate-in').forEach(el => {
+                observer.observe(el);
+            });
+        }
+
+        // Animate statistics
+        function animateStats() {
+            document.querySelectorAll('.stat-number').forEach(stat => {
+                const target = parseInt(stat.getAttribute('data-target'));
+                anime({
+                    targets: stat,
+                    innerHTML: [0, target],
+                    duration: 2000,
+                    round: 1,
+                    easing: 'easeOutExpo'
+                });
+            });
+        }
+
+        // Animate skill bars
+        function animateSkillBars() {
+            anime({
+                targets: '.skill-progress',
+                width: function(el) {
+                    return el.getAttribute('data-width') + '%';
+                },
+                duration: 1500,
+                delay: anime.stagger(100),
+                easing: 'easeOutExpo'
+            });
+        }
+
+        // Create particle effect
+        function createParticles() {
+            const particles = ['particle-1', 'particle-2', 'particle-3'];
+            
+            setInterval(() => {
+                const particle = document.createElement('div');
+                particle.className = 'particle ' + particles[Math.floor(Math.random() * particles.length)];
+                particle.style.left = Math.random() * window.innerWidth + 'px';
+                particle.style.top = window.innerHeight + 'px';
+                document.body.appendChild(particle);
+
+                anime({
+                    targets: particle,
+                    translateY: -window.innerHeight - 100,
+                    translateX: anime.random(-100, 100),
+                    opacity: [0, 1, 0],
+                    duration: 3000,
+                    easing: 'easeOutCubic',
+                    complete: function() {
+                        particle.remove();
+                    }
+                });
+            }, 200);
+        }
+
+        // Smooth scrolling
+        function setupSmoothScroll() {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        }
+
+        // Initialize everything
+        document.addEventListener('DOMContentLoaded', function() {
+            createGrid();
+            createFloatingShapes();
+            initAnimations();
+            setupScrollAnimations();
+            createParticles();
+            setupSmoothScroll();
+        });
+
+        // Button hover effect
+        document.addEventListener('mouseover', function(e) {
+            if (e.target.classList.contains('cta-button')) {
+                anime({
+                    targets: e.target,
+                    scale: 1.05,
+                    duration: 300,
+                    easing: 'easeOutExpo'
+                });
+            }
+        });
+
+        document.addEventListener('mouseout', function(e) {
+            if (e.target.classList.contains('cta-button')) {
+                anime({
+                    targets: e.target,
+                    scale: 1,
+                    duration: 300,
+                    easing: 'easeOutExpo'
+                });
+            }
+        });
+    </script>
+</body>
+</html>

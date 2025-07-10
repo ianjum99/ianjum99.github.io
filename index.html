@@ -602,19 +602,19 @@
                 </div>
                 <div class="stats-grid animate-in">
                     <div class="stat-item">
-                        <div class="stat-number" data-target="8">0</div>
+                        <div class="stat-number" data-target="8">8</div>
                         <div class="stat-label">Years Experience</div>
                     </div>
                     <div class="stat-item">
-                        <div class="stat-number" data-target="50">0</div>
+                        <div class="stat-number" data-target="50">50</div>
                         <div class="stat-label">Projects Completed</div>
                     </div>
                     <div class="stat-item">
-                        <div class="stat-number" data-target="15">0</div>
+                        <div class="stat-number" data-target="15">15</div>
                         <div class="stat-label">Technologies</div>
                     </div>
                     <div class="stat-item">
-                        <div class="stat-number" data-target="6">0</div>
+                        <div class="stat-number" data-target="6">6</div>
                         <div class="stat-label">Companies</div>
                     </div>
                 </div>
@@ -945,21 +945,22 @@
         function setupScrollAnimations() {
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
-                    if (entry.isIntersecting) {
+                    if (entry.isIntersecting && !entry.target.classList.contains('animated')) {
                         entry.target.classList.add('active');
+                        entry.target.classList.add('animated'); // Prevent re-animation
                         
                         // Animate stats
                         if (entry.target.classList.contains('about')) {
-                            animateStats();
+                            setTimeout(animateStats, 500); // Small delay for better UX
                         }
                         
                         // Animate skill bars
                         if (entry.target.classList.contains('skills')) {
-                            animateSkillBars();
+                            setTimeout(animateSkillBars, 300);
                         }
                     }
                 });
-            }, { threshold: 0.1 });
+            }, { threshold: 0.2 });
 
             document.querySelectorAll('.animate-in').forEach(el => {
                 observer.observe(el);
@@ -970,13 +971,16 @@
         function animateStats() {
             document.querySelectorAll('.stat-number').forEach(stat => {
                 const target = parseInt(stat.getAttribute('data-target'));
-                anime({
-                    targets: stat,
-                    innerHTML: [0, target],
-                    duration: 2000,
-                    round: 1,
-                    easing: 'easeOutExpo'
-                });
+                let current = 0;
+                const increment = target / 60; // 60 frames for smooth animation
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        current = target;
+                        clearInterval(timer);
+                    }
+                    stat.textContent = Math.floor(current);
+                }, 33); // ~30fps
             });
         }
 

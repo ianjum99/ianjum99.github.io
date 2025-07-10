@@ -351,7 +351,120 @@
             transition: width 2s ease;
         }
 
-        /* Experience Section */
+        /* Projects Section */
+        .projects {
+            background: #0a0a0a;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: #111;
+            border-radius: 15px;
+            padding: 2rem;
+            border: 1px solid #333;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #ff6b6b, #4ecdc4, #45b7d1);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 107, 107, 0.05);
+            border-color: #ff6b6b;
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .project-icon {
+            font-size: 2rem;
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 107, 107, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #333;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: #ff6b6b;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .project-link:hover {
+            background: #ff5252;
+            transform: translateY(-2px);
+        }
+
+        .project-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #fff;
+            font-weight: 700;
+        }
+
+        .project-description {
+            color: #bbb;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tech-tag {
+            padding: 0.3rem 0.8rem;
+            background: rgba(78, 205, 196, 0.1);
+            color: #4ecdc4;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            border: 1px solid rgba(78, 205, 196, 0.3);
+        }
         .experience {
             background: #111;
             border-top: 1px solid #333;
@@ -571,6 +684,7 @@
                 <ul class="nav-links">
                     <li><a href="#about">About</a></li>
                     <li><a href="#skills">Skills</a></li>
+                    <li><a href="#projects">Projects</a></li>
                     <li><a href="#experience">Experience</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
@@ -744,6 +858,138 @@
                         <div class="skill-bar">
                             <div class="skill-progress" data-width="80"></div>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <h2 class="section-title animate-in">Featured Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card animate-in">
+                    <div class="project-header">
+                        <div class="project-icon">🎬</div>
+                        <div class="project-links">
+                            <a href="https://github.com/ianjum99/OpenMediaPlayer" target="_blank" class="project-link">
+                                <span>GitHub</span>
+                            </a>
+                        </div>
+                    </div>
+                    <h3>OpenMediaPlayer</h3>
+                    <p class="project-description">
+                        A cross-platform media player application built with modern web technologies. Features advanced video playback capabilities, playlist management, and support for multiple media formats. Designed with a clean, intuitive interface for optimal user experience.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">HTML5</span>
+                        <span class="tech-tag">CSS3</span>
+                        <span class="tech-tag">Media APIs</span>
+                    </div>
+                </div>
+
+                <div class="project-card animate-in">
+                    <div class="project-header">
+                        <div class="project-icon">🤖</div>
+                        <div class="project-links">
+                            <a href="https://github.com/ianjum99/t7_rl_ai_24" target="_blank" class="project-link">
+                                <span>GitHub</span>
+                            </a>
+                        </div>
+                    </div>
+                    <h3>T7 Reinforcement Learning AI</h3>
+                    <p class="project-description">
+                        Advanced reinforcement learning project implementing AI agents for Tekken 7. Utilizes deep Q-learning and policy gradient methods to train intelligent game-playing agents. Demonstrates practical applications of RL in complex, real-time environments.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">TensorFlow</span>
+                        <span class="tech-tag">OpenAI Gym</span>
+                        <span class="tech-tag">Deep RL</span>
+                    </div>
+                </div>
+
+                <div class="project-card animate-in">
+                    <div class="project-header">
+                        <div class="project-icon">☁️</div>
+                        <div class="project-links">
+                            <a href="https://github.com/ianjum99/CloudJade" target="_blank" class="project-link">
+                                <span>GitHub</span>
+                            </a>
+                        </div>
+                    </div>
+                    <h3>CloudJade</h3>
+                    <p class="project-description">
+                        Cloud-native deployment framework for JAMstack applications on AWS infrastructure. Automates provisioning of scalable, secure cloud resources with integrated CI/CD pipelines. Simplifies the deployment process for modern web applications.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">AWS</span>
+                        <span class="tech-tag">Terraform</span>
+                        <span class="tech-tag">Node.js</span>
+                        <span class="tech-tag">JAMstack</span>
+                    </div>
+                </div>
+
+                <div class="project-card animate-in">
+                    <div class="project-header">
+                        <div class="project-icon">⚙️</div>
+                        <div class="project-links">
+                            <a href="https://github.com/ianjum99/kubenest" target="_blank" class="project-link">
+                                <span>GitHub</span>
+                            </a>
+                        </div>
+                    </div>
+                    <h3>KubeNest</h3>
+                    <p class="project-description">
+                        Kubernetes management tool for orchestrating stateful applications at scale. Provides advanced deployment strategies, monitoring capabilities, and automated scaling for containerized workloads. Designed for production-grade Kubernetes environments.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Kubernetes</span>
+                        <span class="tech-tag">Go</span>
+                        <span class="tech-tag">Docker</span>
+                        <span class="tech-tag">Helm</span>
+                    </div>
+                </div>
+
+                <div class="project-card animate-in">
+                    <div class="project-header">
+                        <div class="project-icon">👁️</div>
+                        <div class="project-links">
+                            <a href="https://github.com/ianjum99/OpenCV-Counter" target="_blank" class="project-link">
+                                <span>GitHub</span>
+                            </a>
+                        </div>
+                    </div>
+                    <h3>OpenCV People Counter</h3>
+                    <p class="project-description">
+                        Real-time computer vision application for counting people using OpenCV and advanced object detection algorithms. Implements background subtraction, object tracking, and directional counting for accurate people flow analysis in various environments.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">OpenCV</span>
+                        <span class="tech-tag">Computer Vision</span>
+                        <span class="tech-tag">ML</span>
+                    </div>
+                </div>
+
+                <div class="project-card animate-in">
+                    <div class="project-header">
+                        <div class="project-icon">🔗</div>
+                        <div class="project-links">
+                            <a href="https://github.com/ianjum99" target="_blank" class="project-link">
+                                <span>View All Projects</span>
+                            </a>
+                        </div>
+                    </div>
+                    <h3>More Projects</h3>
+                    <p class="project-description">
+                        Explore additional projects including blockchain implementations, machine learning experiments, DevOps automation tools, and cloud infrastructure solutions. Each project demonstrates different aspects of modern software development.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Various</span>
+                        <span class="tech-tag">Technologies</span>
                     </div>
                 </div>
             </div>
